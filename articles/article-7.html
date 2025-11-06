@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Early Access is either a goldmine or a graveyard. We've seen both. Dragon Shelter's Early Access generated revenue while building one of the most engaged communities we've ever had.">
+    <meta name="keywords" content="early access, game development, community building, monetization, indie games">
+    <meta name="author" content="Wild Forest Studio">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Early Access Done Right: Turning Beta Players into Revenue">
+    <meta property="og:description" content="Early Access is either a goldmine or a graveyard. We've seen both. Dragon Shelter's Early Access generated revenue while building one of the most engaged communities we've ever had.">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Early Access Done Right: Turning Beta Players into Revenue">
+
+    <title>Early Access Done Right: Turning Beta Players into Revenue | Wild Forest Studio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Primary Colors */
+            --primary-bg: #FFFFFF;
+            --secondary-bg: #F8F9FA;
+            --accent-bg: #F0F4FF;
+
+            /* Text Colors */
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+
+            /* Accent Colors */
+            --accent-primary: #0066FF;
+            --accent-secondary: #00D9FF;
+            --accent-success: #00C48C;
+            --accent-warning: #FF6B6B;
+
+            /* Borders & Shadows */
+            --border-color: #E2E8F0;
+            --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .metric-number {
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow-light);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .nav-links a:hover::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-primary);
+        }
+
+        .nav-cta {
+            background: var(--accent-primary);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 102, 255, 0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Article Section */
+        .article-section {
+            background: var(--primary-bg);
+            padding: 5rem 0;
+        }
+
+        .article-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .article-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .article-meta span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .article-meta .read-time,
+        .article-meta .article-date,
+        .article-meta .article-author {
+            padding: 0.5rem 1rem;
+            background: var(--secondary-bg);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .article-content h1,
+        .article-content h2,
+        .article-content h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .article-content h1 {
+            font-size: 2rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.8rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.5rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .article-content ul,
+        .article-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .article-content strong {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .article-content em {
+            font-style: italic;
+        }
+
+        .article-content code {
+            background: var(--secondary-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9em;
+        }
+
+        .article-content pre {
+            background: var(--secondary-bg);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .article-content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .article-content blockquote {
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .article-footer {
+            max-width: 800px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .article-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent-primary);
+            border: 2px solid var(--accent-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .article-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .nav-prev,
+        .nav-next {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .nav-prev:hover,
+        .nav-next:hover {
+            gap: 0.8rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-primary);
+            padding: 3rem 2rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            color: white;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+            color: white;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: white;
+        }
+
+        .newsletter-form button {
+            padding: 0.8rem 1.5rem;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .article-header h2 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .article-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="../index.html" class="logo">Wild Forest Studio</a>
+            <ul class="nav-links">
+                <li><a href="../index.html#problem">Problem</a></li>
+                <li><a href="../index.html#solution">Solution</a></li>
+                <li><a href="../index.html#proof">Track Record</a></li>
+                <li><a href="../index.html#insights">Insights</a></li>
+                <li><a href="../index.html#pricing">Pricing</a></li>
+            </ul>
+            <a href="../index.html#contact" class="nav-cta">Get Free Audit</a>
+        </div>
+    </nav>
+
+    <!-- Article 7 -->
+    <section id="article-7" class="article-section">
+        <div class="container">
+            <div class="article-header">
+                <h2>Early Access Done Right: Turning Beta Players into Revenue</h2>
+                <div class="article-meta">
+                    <span class="read-time">8 min read</span>
+                    <span class="article-date">November 2024</span>
+                    <span class="article-author">Wild Forest Studio</span>
+                </div>
+            </div>
+            <div class="article-content">
+                <h2>Introduction</h2>
+
+<p>Early Access is either a goldmine or a graveyard. We've seen both. Dragon Shelter's Early Access generated revenue while building one of the most engaged communities we've ever had. Other projects we've consulted on launched EA to crickets and never recovered.</p>
+
+<p>The difference isn't luck. It's understanding that Early Access isn't "launching unfinished"—it's selling access to a development process. When done right, EA players become invested partners who fund your development, test your game, and market it for you.</p>
+
+<p>Here's exactly how we turned beta players into revenue without burning bridges or damaging our reputation.</p>
+
+<h2>The Readiness Assessment</h2>
+
+<p><strong>The biggest EA mistake:</strong> Launching too early because you need money.</p>
+
+<p><strong>Hard truth:</strong> If your game isn't EA-ready, launching won't save it—it'll kill it.</p>
+
+<p><strong>Our EA readiness checklist:</strong>
+
+<strong>Core Loop: Must Be Complete</strong>
+<ul>
+<li>2+ hours of polished gameplay</li>
+<li>Clear moment-to-moment engagement</li>
+<li>Players can articulate what the game is</li>
+<li>No game-breaking bugs in core systems</li>
+</ul>
+
+<strong>Content: Must Have Foundation</strong>
+<ul>
+<li>Enough content to justify price</li>
+<li>Clear roadmap of what's coming</li>
+<li>Systems that can be expanded (not rebuilt)</li>
+<li>Save compatibility plan for updates</li>
+</ul>
+
+<strong>Communication: Must Be Ready</strong>
+<ul>
+<li>Discord/community platform set up</li>
+<li>Update schedule planned</li>
+<li>Feedback collection system ready</li>
+<li>Dedicated community manager</li>
+</ul>
+
+<p>If you can't check all boxes, delay EA. One month of extra development is better than years recovering from bad launch.</p>
+
+<p><strong>Dragon Shelter EA readiness:</strong>
+<ul>
+<li>Core dragon care loop: Complete and polished</li>
+<li>Content: 15 dragons, 3 biomes, 8 hours gameplay</li>
+<li>Community: Discord with 2.4K members pre-EA</li>
+<li>Result: 87% positive reviews in EA</li>
+</ul></p>
+
+<h2>The Pricing Psychology</h2>
+
+<p><strong>What developers get wrong:</strong> Pricing EA lower because "it's unfinished."</p>
+
+<p><strong>What actually works:</strong> Price based on current value, discount based on completion percentage.</p>
+
+<p><strong>Our pricing formula:</strong>
+
+```
+Base Price = Full Game Intended Price × 0.7
+EA Discount = (1 - Completion Percentage) × 0.3
+EA Launch Price = Base Price - EA Discount
+```
+
+<p><strong>Dragon Shelter example:</strong>
+<ul>
+<li>Full game intended price: $20</li>
+<li>Base EA price: $14 (70% of $20)</li>
+<li>Completion at EA launch: 60%</li>
+<li>EA discount: (1 - 0.6) × 30% = 12%</li>
+<li>Final EA price: $14 - $1.68 = $12.32 (we rounded to $12.99)</li>
+</ul>
+
+<p><strong>Why this works:</strong>
+<ul>
+<li>Rewards early supporters with discount</li>
+<li>Price increases gradually toward full release</li>
+<li>Creates urgency (price will rise)</li>
+<li>Respects player investment of time</li>
+</ul>
+
+<p><strong>Price increase schedule:</strong>
+<ul>
+<li>EA launch: $12.99</li>
+<li>75% complete: $14.99</li>
+<li>85% complete: $16.99</li>
+<li>Full release: $19.99</li>
+</ul>
+
+<p>The psychology: Each price increase reminds wishlisters to buy now, driving consistent revenue throughout EA.</p>
+
+<h2>The Roadmap Strategy</h2>
+
+<p><strong>Your EA roadmap isn't a promise—it's a product.</strong></p>
+
+<p>Players buy EA for future features as much as current ones. Your roadmap sells the dream while managing expectations.</p>
+
+<p><strong>What makes a good EA roadmap:</strong>
+
+<strong>1. Tiered Timeline:</strong>
+<ul>
+<li><strong>Near-term (1-2 months):</strong> Specific features, screenshots</li>
+<li><strong>Mid-term (3-6 months):</strong> Major systems, concept art</li>
+<li><strong>Long-term (6-12 months):</strong> Vision, no specifics</li>
+</ul>
+
+<strong>2. Buffer System:</strong>
+<ul>
+<li>Plan for 12 months</li>
+<li>Promise 9 months</li>
+<li>Ship 10 months</li>
+<li>Players get "bonus" content (but you had buffer)</li>
+</ul>
+
+<strong>3. Flexibility Clause:</strong>
+"This roadmap represents our current vision. Community feedback may shift priorities, because making the best game matters more than sticking to a plan."</p>
+
+<p><strong>Dragon Shelter roadmap structure:</strong>
+
+<strong>Month 1-2 (Promised):</strong>
+<ul>
+<li>5 new dragons (specific)</li>
+<li>New biome: Volcanic (screenshots shown)</li>
+<li>Breeding system v2 (detailed description)</li>
+</ul>
+
+<strong>Month 3-6 (Outlined):</strong>
+<ul>
+<li>Multiplayer features (concept phase)</li>
+<li>Advanced genetics (high-level vision)</li>
+<li>Seasonal events (general idea)</li>
+</ul>
+
+<p><strong>Result:</strong> 94% roadmap completion rate (because we built in buffer), created perception of over-delivery.</p>
+
+<h2>The Community Flywheel</h2>
+
+<p><strong>The EA success formula:</strong> Engaged Community → Valuable Feedback → Better Game → More Engaged Community</p>
+
+<p><strong>How to build the flywheel:</strong>
+
+<strong>Week 1-2: Foundation</strong>
+<ul>
+<li>Launch Discord/forum</li>
+<li>Daily developer presence</li>
+<li>Quick wins (address easy requests immediately)</li>
+<li>Establish communication rhythm</li>
+</ul>
+
+<strong>Week 3-4: Recognition</strong>
+<ul>
+<li>Highlight player contributions</li>
+<li>Credit community in patch notes</li>
+<li>Create "community hero" role for helpful players</li>
+<li>Feature player creations</li>
+</ul>
+
+<strong>Month 2-3: Ownership</strong>
+<ul>
+<li>Player polls for feature priority</li>
+<li>Beta test programs for major features</li>
+<li>Community challenge events</li>
+<li>Let players name features/content</li>
+</ul>
+
+<strong>Month 4+: Advocacy</strong>
+<ul>
+<li>Community creates content</li>
+<li>Players recruit other players</li>
+<li>Organic marketing from satisfied EA participants</li>
+<li>Self-moderating community</li>
+</ul>
+
+<p><strong>Dragon Shelter community metrics:</strong>
+<ul>
+<li>Discord growth: 2.4K → 18.7K during EA</li>
+<li>Daily active members: 340 average</li>
+<li>Community-created content: 2,100+ pieces</li>
+<li>Player-driven sales: Estimated 28% of purchases from community referrals</li>
+</ul>
+
+<p><strong>Investment required:</strong> 2-3 hours daily of community engagement. Worth every minute.</p>
+
+<h2>The Update Cadence Formula</h2>
+
+<p><strong>EA lives or dies on update consistency.</strong></p>
+
+<p><strong>What doesn't work:</strong> Irregular updates with long silences.</p>
+
+<p><strong>What works:</strong> Predictable rhythm that players can count on.</p>
+
+<p><strong>Our proven cadence:</strong>
+
+<strong>Weekly (Small Updates):</strong>
+<ul>
+<li>Bug fixes</li>
+<li>Minor balance changes</li>
+<li>QoL improvements</li>
+<li>Shows active development</li>
+</ul>
+
+<strong>Bi-Weekly (Medium Updates):</strong>
+<ul>
+<li>New content (small)</li>
+<li>Feature iterations</li>
+<li>Community request implementations</li>
+<li>Keeps players engaged</li>
+</ul>
+
+<strong>Monthly (Major Updates):</strong>
+<ul>
+<li>Significant content</li>
+<li>Major features</li>
+<li>Roadmap milestones</li>
+<li>Drives player return and purchases</li>
+</ul>
+
+<strong>Quarterly (Massive Updates):</strong>
+<ul>
+<li>Game-changing features</li>
+<li>Major content drops</li>
+<li>Press-worthy announcements</li>
+<li>Brings back lapsed players</li>
+</ul>
+
+<p><strong>Critical rule:</strong> Never miss scheduled update. If feature isn't ready, ship something else on schedule.</p>
+
+<p><strong>Dragon Shelter track record:</strong>
+<ul>
+<li>47 updates in 12 months</li>
+<li>Zero missed update windows</li>
+<li>Average player response: "This dev actually delivers"</li>
+</ul></p>
+
+<h2>The Feedback Filtering System</h2>
+
+<p><strong>EA generates massive feedback. Most of it is noise.</strong></p>
+
+<p><strong>The filtering system:</strong>
+
+<strong>Tier 1: Critical (Ship Immediately)</strong>
+<ul>
+<li>Game-breaking bugs</li>
+<li>Save corruption</li>
+<li>Major balance issues</li>
+<li>Blocks progression</li>
+</ul>
+
+<strong>Tier 2: Important (Next Update)</strong>
+<ul>
+<li>Frequent player requests (20+ mentions)</li>
+<li>Competitive balance issues</li>
+<li>QoL improvements with high impact</li>
+</ul>
+
+<strong>Tier 3: Nice-to-Have (Roadmap Consideration)</strong>
+<ul>
+<li>Creative suggestions</li>
+<li>Niche requests</li>
+<li>Long-term features</li>
+</ul>
+
+<strong>Tier 4: Ignore</strong>
+<ul>
+<li>Contradictory to vision</li>
+<li>Requested by single player</li>
+<li>Would require core rebuild</li>
+</ul>
+
+<p><strong>The key:</strong> Communicate tiers transparently. Players accept "this doesn't fit our vision" better than silence.</p>
+
+<p><strong>Our feedback stats:</strong>
+<ul>
+<li>Total feedback pieces: 8,400+</li>
+<li>Implemented Tier 1: 100%</li>
+<li>Implemented Tier 2: 67%</li>
+<li>Implemented Tier 3: 23%</li>
+<li>Ignored Tier 4: 100%</li>
+</ul>
+
+<p>Players respected our filtering because we explained our reasoning.</p>
+
+<h2>The Revenue Sustainability Model</h2>
+
+<p><strong>EA isn't just about initial sales—it's about sustained revenue.</strong></p>
+
+<p><strong>Revenue sources during EA:</strong>
+
+<strong>1. Base Game Sales</strong>
+<ul>
+<li>Price increases create urgency</li>
+<li>Updates drive wishlist conversion</li>
+<li>Community marketing generates organic sales</li>
+</ul>
+
+<strong>2. Content DLC (Optional)</strong>
+<ul>
+<li>Cosmetic items only (never gameplay)</li>
+<li>Funds additional development</li>
+<li>Rewards engaged players</li>
+</ul>
+
+<strong>3. Supporter Packs</strong>
+<ul>
+<li>Higher-tier EA access</li>
+<li>Exclusive cosmetics</li>
+<li>Credits in game</li>
+<li>Behind-the-scenes access</li>
+</ul>
+
+<p><strong>Dragon Shelter EA revenue breakdown:</strong>
+<ul>
+<li>Base sales: 67% of revenue</li>
+<li>Supporter packs: 28% of revenue</li>
+<li>Cosmetic DLC: 5% of revenue</li>
+</ul>
+
+<p><strong>Total EA revenue:</strong> $427K (funded 14 months of development)</p>
+
+<p><strong>The model works because:</strong> Each revenue source serves different player types. Some want just the game. Others want to support more deeply. Give them options.</p>
+
+<h2>The Full Release Transition</h2>
+
+<p><strong>The final challenge:</strong> Transitioning from EA to full release without killing momentum.</p>
+
+<p><strong>The graduation checklist:</strong>
+
+<strong>6 Months Before:</strong>
+<ul>
+<li>Announce target release date</li>
+<li>Final feature lock</li>
+<li>Polish phase begins</li>
+<li>Marketing ramp-up</li>
+</ul>
+
+<strong>3 Months Before:</strong>
+<ul>
+<li>Release candidate testing</li>
+<li>Performance optimization</li>
+<li>Content completion</li>
+<li>Press outreach</li>
+</ul>
+
+<strong>1 Month Before:</strong>
+<ul>
+<li>Release trailer</li>
+<li>Price increase announcement</li>
+<li>Thank EA community</li>
+<li>Launch event planning</li>
+</ul>
+
+<strong>Launch Day:</strong>
+<ul>
+<li>EA players get special recognition</li>
+<li>Community celebration event</li>
+<li>Press embargo lifts</li>
+<li>Launch discount (lower than EA price)</li>
+</ul>
+
+<strong>Post-Launch:</strong>
+<ul>
+<li>Maintain update cadence</li>
+<li>Continue community engagement</li>
+<li>Transition EA players to long-term community</li>
+<li>Plan post-launch content</li>
+</ul>
+
+<p><strong>Dragon Shelter transition:</strong>
+<ul>
+<li>EA: 12 months, $427K revenue, 87% positive</li>
+<li>Launch: +340% sales spike, maintained 87% positive</li>
+<li>Community: 91% of EA players remained active post-launch</li>
+</ul></p>
+
+<h2>Key Takeaways</h2>
+
+<ul>
+<li><strong>Readiness Check:</strong> Core loop complete + 2 hours polished + communication ready or delay launch</li>
+<li><strong>Pricing Formula:</strong> Base at 70% of full price, discount by (1 - completion %), increase gradually</li>
+<li><strong>Roadmap Structure:</strong> Specific near-term, outlined mid-term, vision long-term with buffer built in</li>
+<li><strong>Community Flywheel:</strong> Engagement → Feedback → Better Game → More Engagement cycle</li>
+<li><strong>Update Cadence:</strong> Weekly small, bi-weekly medium, monthly major, quarterly massive—never miss</li>
+<li><strong>Feedback Filtering:</strong> Critical/Important/Nice-to-Have/Ignore tiers, communicate transparently</li>
+<li><strong>Revenue Model:</strong> Base (67%) + Supporter Packs (28%) + Cosmetics (5%) = sustained funding</li>
+<li><strong>Full Release Transition:</strong> 6-month runway, maintain momentum, celebrate community, launch strong</li>
+</ul>
+
+<h2>Conclusion</h2>
+
+<p>Early Access isn't a shortcut—it's a different path that requires different skills. It's not about shipping unfinished games. It's about building games with your community, turning players into partners, and funding development through genuine value exchange.</p>
+
+<p>Dragon Shelter's EA success wasn't luck. It was systematic execution of these principles. Revenue sustained development. Community improved the game. And when we launched v1.0, we had 18,700 advocates ready to tell the world.</p>
+
+<p>The best part? These EA players didn't just fund our game—they became our most valuable asset for future projects.</p>
+
+<p>Want to plan your Early Access strategy? <a href="../index.html#contact">Let's build your roadmap together.</a></p>
+
+<p>---</p>
+
+<strong>Tags:</strong> #EarlyAccess #IndieDev #GameDevelopment #Community #Monetization
+
+<strong>Recommended Reading:</strong>
+<ul>
+<li><a href="article-3.html">Crisis-Proof Development</a></li>
+<li><a href="article-5.html">From 30K to 200K Wishlists</a></li>
+</ul>
+
+<strong>Share This Article:</strong>
+<p>Help developers understand how to do Early Access right.</p>
+
+<strong>Discuss With Our Team:</strong>
+<p>Planning an Early Access launch? <a href="../index.html#contact">Schedule an EA strategy session.</a></p>
+
+<p>---</p>
+            </div>
+            <div class="article-footer">
+                <div class="article-actions">
+                    <a href="article-7.pdf" class="btn btn-secondary" target="_blank">
+                        <i class="fas fa-download"></i> Download PDF
+                    </a>
+                    <a href="../index.html#insights" class="btn btn-outline">
+                        <i class="fas fa-arrow-up"></i> Back to Articles
+                    </a>
+                </div>
+                <div class="article-navigation">
+                    <a href='article-6.html' class='nav-prev'><i class='fas fa-chevron-left'></i> Previous Article</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Wild Forest Studio</h4>
+                <p>Crisis-proof game development partner delivering results since 2018.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Steam"><i class="fab fa-steam"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: business@wildforeststudio.com</p>
+                <p>Partnerships: partnerships@wildforeststudio.com</p>
+                <p>Response time: Within 24 hours</p>
+                <p>Hours: Mon-Fri, 9AM-6PM UTC+3</p>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <a href="../index.html#services">Full-Cycle Development</a>
+                <a href="../index.html#services">Viral Concept Design</a>
+                <a href="../index.html#services">Publisher Negotiations</a>
+                <a href="../index.html#services">LiveOps Support</a>
+            </div>
+            <div class="footer-section">
+                <h4>Monthly Insights</h4>
+                <p>Get expert insights on game dev survival</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Wild Forest Studio. All rights reserved. | 272K+ wishlists generated | Successfully funded projects | 100% completion rate</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            console.log('Newsletter subscription:', email);
+            alert('Thank you for subscribing!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

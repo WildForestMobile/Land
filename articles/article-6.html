@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Most developers track the wrong metrics. They obsess over total wishlists, social media followers, or demo downloads—vanity metrics that feel good but predict nothing about actual success.">
+    <meta name="keywords" content="game metrics, success prediction, analytics, indie games, game development">
+    <meta name="author" content="Wild Forest Studio">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="The 5 Metrics That Actually Predict Game Success">
+    <meta property="og:description" content="Most developers track the wrong metrics. They obsess over total wishlists, social media followers, or demo downloads—vanity metrics that feel good but predict nothing about actual success.">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The 5 Metrics That Actually Predict Game Success">
+
+    <title>The 5 Metrics That Actually Predict Game Success | Wild Forest Studio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Primary Colors */
+            --primary-bg: #FFFFFF;
+            --secondary-bg: #F8F9FA;
+            --accent-bg: #F0F4FF;
+
+            /* Text Colors */
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+
+            /* Accent Colors */
+            --accent-primary: #0066FF;
+            --accent-secondary: #00D9FF;
+            --accent-success: #00C48C;
+            --accent-warning: #FF6B6B;
+
+            /* Borders & Shadows */
+            --border-color: #E2E8F0;
+            --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .metric-number {
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow-light);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .nav-links a:hover::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-primary);
+        }
+
+        .nav-cta {
+            background: var(--accent-primary);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 102, 255, 0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Article Section */
+        .article-section {
+            background: var(--primary-bg);
+            padding: 5rem 0;
+        }
+
+        .article-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .article-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .article-meta span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .article-meta .read-time,
+        .article-meta .article-date,
+        .article-meta .article-author {
+            padding: 0.5rem 1rem;
+            background: var(--secondary-bg);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .article-content h1,
+        .article-content h2,
+        .article-content h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .article-content h1 {
+            font-size: 2rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.8rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.5rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .article-content ul,
+        .article-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .article-content strong {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .article-content em {
+            font-style: italic;
+        }
+
+        .article-content code {
+            background: var(--secondary-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9em;
+        }
+
+        .article-content pre {
+            background: var(--secondary-bg);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .article-content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .article-content blockquote {
+            border-left: 4px solid var(--accent-primary);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .article-footer {
+            max-width: 800px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .article-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent-primary);
+            border: 2px solid var(--accent-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .article-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .nav-prev,
+        .nav-next {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .nav-prev:hover,
+        .nav-next:hover {
+            gap: 0.8rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-primary);
+            padding: 3rem 2rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            color: white;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+            color: white;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            color: white;
+        }
+
+        .newsletter-form button {
+            padding: 0.8rem 1.5rem;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .article-header h2 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .article-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="../index.html" class="logo">Wild Forest Studio</a>
+            <ul class="nav-links">
+                <li><a href="../index.html#problem">Problem</a></li>
+                <li><a href="../index.html#solution">Solution</a></li>
+                <li><a href="../index.html#proof">Track Record</a></li>
+                <li><a href="../index.html#insights">Insights</a></li>
+                <li><a href="../index.html#pricing">Pricing</a></li>
+            </ul>
+            <a href="../index.html#contact" class="nav-cta">Get Free Audit</a>
+        </div>
+    </nav>
+
+    <!-- Article 6 -->
+    <section id="article-6" class="article-section">
+        <div class="container">
+            <div class="article-header">
+                <h2>The 5 Metrics That Actually Predict Game Success</h2>
+                <div class="article-meta">
+                    <span class="read-time">6 min read</span>
+                    <span class="article-date">November 2024</span>
+                    <span class="article-author">Wild Forest Studio</span>
+                </div>
+            </div>
+            <div class="article-content">
+                <h2>Introduction</h2>
+
+<p>Most developers track the wrong metrics. They obsess over total wishlists, social media followers, or demo downloads—vanity metrics that feel good but predict nothing about actual success.</p>
+
+<p>After launching multiple games and analyzing thousands of data points, we've identified exactly five metrics that consistently predict whether a game will succeed or fail. These aren't post-launch metrics. These are pre-launch predictors you can measure months before release.</p>
+
+<p>If your game scores well on these five metrics, you're almost guaranteed success. If it doesn't, you have time to fix it before launch.</p>
+
+<h2>Metric 1: Session Completion Rate</h2>
+
+<p><strong>What it measures:</strong> Percentage of players who complete a full gameplay session without quitting early.</p>
+
+<p><strong>Why it predicts success:</strong> Players vote with their time. If they quit your demo/beta early, they'll quit your full game early—and leave negative reviews.</p>
+
+<p><strong>How to measure:</strong>
+<ul>
+<li>Track demo/beta playtime</li>
+<li>Identify your "intended session length" (e.g., 30 minutes)</li>
+<li>Calculate: (Players who play 30+ min) / (Total players) × 100</li>
+</ul>
+
+<p><strong>Success threshold:</strong>
+<ul>
+<li>60%+ = Excellent retention</li>
+<li>45-60% = Acceptable retention</li>
+<li>Below 45% = Core loop needs work</li>
+</ul>
+
+<p><strong>Our data from Night is Coming:</strong>
+<ul>
+<li>Demo session completion: 67%</li>
+<li>First-week retention: 64%</li>
+<li>6-month retention: 43%</li>
+</ul>
+
+<p><strong>The pattern:</strong> High demo completion predicts high retention. High retention predicts positive reviews. Positive reviews predict sales.</p>
+
+<p><strong>If below threshold:</strong> Identify where players quit and redesign that section. Every 10% improvement in session completion = ~15% improvement in retention.</p>
+
+<h2>Metric 2: Wishlist-to-Purchase Conversion Rate</h2>
+
+<p><strong>What it measures:</strong> Percentage of wishlisters who buy within first month of launch.</p>
+
+<p><strong>Why it predicts success:</strong> Wishlists are promises. Conversion rate shows if you kept that promise.</p>
+
+<p><strong>How to measure:</strong>
+<ul>
+<li>Track wishlist count at launch</li>
+<li>Track purchases in first 30 days from wishlisters</li>
+<li>Calculate: (Purchases from wishlisters) / (Total wishlists) × 100</li>
+</ul>
+
+<p><strong>Success threshold:</strong>
+<ul>
+<li>40%+ = Exceptional execution</li>
+<li>25-40% = Solid execution</li>
+<li>Below 25% = Expectations not met</li>
+</ul>
+
+<p><strong>Our Night is Coming conversion:</strong>
+<ul>
+<li>Launch wishlists: 200K</li>
+<li>First-month conversions: 94K (47%)</li>
+<li>This predicted our 94% positive review score</li>
+</ul>
+
+<p><strong>Why 47% is significant:</strong> Industry average is 25-30%. We over-delivered on wishlist expectations.</p>
+
+<p><strong>If below threshold:</strong> Your launch version doesn't match your marketing. Either improve the game or adjust marketing promises.</p>
+
+<h2>Metric 3: Organic Wishlist Growth Rate</h2>
+
+<p><strong>What it measures:</strong> Daily wishlist growth without paid marketing.</p>
+
+<p><strong>Why it predicts success:</strong> Organic growth means players are sharing your game. Sharing means genuine interest. Genuine interest predicts sales.</p>
+
+<p><strong>How to measure:</strong>
+<ul>
+<li>Track daily wishlists during no-marketing periods</li>
+<li>Calculate 7-day average</li>
+<li>Divide by total wishlists to get percentage growth</li>
+</ul>
+
+<p><strong>Success threshold:</strong>
+<ul>
+<li>2%+ per week = Strong organic interest</li>
+<li>1-2% per week = Moderate organic interest</li>
+<li>Below 1% per week = Forced growth only</li>
+</ul>
+
+<p><strong>Our Night is Coming growth:</strong>
+<ul>
+<li>Weeks 1-4: 3.2% organic weekly growth</li>
+<li>Weeks 5-12: 2.7% organic weekly growth</li>
+<li>Weeks 13+: 1.9% organic weekly growth</li>
+</ul>
+
+<p><strong>The pattern:</strong> Games with 2%+ organic growth maintain momentum post-launch. Games below 1% need constant marketing to survive.</p>
+
+<p><strong>If below threshold:</strong> Your game isn't shareable. Implement virality patterns or improve your genre twist.</p>
+
+<h2>Metric 4: Review Response Ratio</h2>
+
+<p><strong>What it measures:</strong> Ratio of positive to negative sentiment in demo/beta feedback.</p>
+
+<p><strong>Why it predicts success:</strong> Early feedback predicts launch reviews. Launch reviews predict sales velocity.</p>
+
+<p><strong>How to measure:</strong>
+<ul>
+<li>Collect all demo/beta feedback</li>
+<li>Categorize as positive, neutral, or negative</li>
+<li>Calculate: (Positive feedback) / (Negative feedback)</li>
+</ul>
+
+<p><strong>Success threshold:</strong>
+<ul>
+<li>9:1 or better = Launch will be strong</li>
+<li>5:1 to 9:1 = Launch will be solid</li>
+<li>Below 5:1 = Critical issues exist</li>
+</ul>
+
+<p><strong>Our Night is Coming ratio:</strong>
+<ul>
+<li>Beta feedback: 11:1 positive:negative</li>
+<li>Launch reviews: 94% positive (15:1 ratio)</li>
+</ul>
+
+<p><strong>The correlation:</strong> Beta ratio predicts launch ratio with 89% accuracy.</p>
+
+<p><strong>If below threshold:</strong> Address negative feedback before launch. Every major complaint in beta becomes amplified complaint in launch reviews.</p>
+
+<h2>Metric 5: Content Creator Retention Rate</h2>
+
+<p><strong>What it measures:</strong> Percentage of streamers/YouTubers who create multiple videos about your game.</p>
+
+<p><strong>Why it predicts success:</strong> Creators are professional game evaluators. If they return for multiple videos, your game has legs.</p>
+
+<p><strong>How to measure:</strong>
+<ul>
+<li>Track creators who cover your game</li>
+<li>Calculate: (Creators with 2+ videos) / (Total creators) × 100</li>
+</ul>
+
+<p><strong>Success threshold:</strong>
+<ul>
+<li>30%+ return rate = Excellent content potential</li>
+<li>15-30% return rate = Good content potential</li>
+<li>Below 15% = One-and-done content</li>
+</ul>
+
+<p><strong>Our Dragon Shelter data:</strong>
+<ul>
+<li>Initial coverage: 87 creators</li>
+<li>Returned for 2+ videos: 31 creators (36%)</li>
+<li>Predicted sustained interest: ✓ Correct</li>
+</ul>
+
+<p><strong>Why this matters:</strong> Each returning creator generates 3-10x more views than one-time coverage. Sustained creator interest = sustained visibility.</p>
+
+<p><strong>If below threshold:</strong> Your game isn't giving creators enough variety. Add randomization, build sharing, or challenge modes.</p>
+
+<h2>The Composite Score</h2>
+
+<p><strong>How to use these metrics together:</strong></p>
+
+<p>Calculate your <strong>Success Prediction Score:</strong>
+1. Session Completion Rate: (Your %) / 60 = X points
+2. Wishlist Conversion: (Your %) / 40 = Y points
+3. Organic Growth: (Your weekly %) / 2 = Z points
+4. Review Ratio: (Your ratio) / 9 = A points
+5. Creator Retention: (Your %) / 30 = B points</p>
+
+<p><strong>Total Score = X + Y + Z + A + B</strong></p>
+
+<p><strong>Interpretation:</strong>
+<ul>
+<li>4.5-5.0 = Almost certain success</li>
+<li>3.5-4.5 = Likely success with good execution</li>
+<li>2.5-3.5 = Uncertain, needs improvement</li>
+<li>Below 2.5 = Significant problems to address</li>
+</ul>
+
+<p><strong>Night is Coming Score:</strong>
+1. 67% / 60 = 1.12
+2. 47% / 40 = 1.18
+3. 2.7% / 2 = 1.35
+4. 11:1 / 9 = 1.22
+5. 36% / 30 = 1.20</p>
+
+<p><strong>Total: 5.07</strong> (predicted exceptional success—which happened)</p>
+
+<h2>Key Takeaways</h2>
+
+<ul>
+<li><strong>Session Completion (60%+):</strong> Players finishing sessions predict retention and positive reviews</li>
+<li><strong>Conversion Rate (40%+):</strong> High wishlist conversion proves you over-delivered on promises</li>
+<li><strong>Organic Growth (2%+ weekly):</strong> Consistent growth without paid marketing indicates shareability</li>
+<li><strong>Review Ratio (9:1+):</strong> Beta feedback ratio predicts launch review scores with 89% accuracy</li>
+<li><strong>Creator Retention (30%+):</strong> Multiple videos from same creators predict sustained visibility</li>
+<li><strong>Composite Score (4.5+):</strong> All five metrics together predict success with high confidence</li>
+<li><strong>Pre-Launch Power:</strong> These metrics are measurable months before launch, giving time to adjust</li>
+</ul>
+
+<h2>Conclusion</h2>
+
+<p>Success isn't mysterious. It's measurable. These five metrics, tracked during development and beta, predicted our success months before launch. They'll predict yours too.</p>
+
+<p>The power isn't in the metrics themselves—it's in measuring them early enough to fix problems. If your composite score is below 3.5, you have time to improve before launch. If you're above 4.5, you can launch with confidence.</p>
+
+<p>Stop guessing. Start measuring. These five metrics will tell you if your game will succeed.</p>
+
+<p>Ready to calculate your game's success prediction score? <a href="../index.html#contact">Let's analyze your metrics together.</a></p>
+
+<p>---</p>
+
+<strong>Tags:</strong> #GameMetrics #DataAnalysis #IndieDev #GameSuccess #Analytics
+
+<strong>Recommended Reading:</strong>
+<ul>
+<li><a href="article-2.html">DNA of Successful Games</a></li>
+<li><a href="article-5.html">From 30K to 200K Wishlists</a></li>
+</ul>
+
+<strong>Share This Article:</strong>
+<p>Help developers measure what actually matters.</p>
+
+<strong>Discuss With Our Team:</strong>
+<p>Want help tracking and improving these metrics? <a href="../index.html#contact">Contact us for a metrics review session.</a></p>
+
+<p>---</p>
+            </div>
+            <div class="article-footer">
+                <div class="article-actions">
+                    <a href="article-6.pdf" class="btn btn-secondary" target="_blank">
+                        <i class="fas fa-download"></i> Download PDF
+                    </a>
+                    <a href="../index.html#insights" class="btn btn-outline">
+                        <i class="fas fa-arrow-up"></i> Back to Articles
+                    </a>
+                </div>
+                <div class="article-navigation">
+                    <a href='article-5.html' class='nav-prev'><i class='fas fa-chevron-left'></i> Previous Article</a>
+                    <a href='article-7.html' class='nav-next'>Next Article <i class='fas fa-chevron-right'></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Wild Forest Studio</h4>
+                <p>Crisis-proof game development partner delivering results since 2018.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Steam"><i class="fab fa-steam"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: business@wildforeststudio.com</p>
+                <p>Partnerships: partnerships@wildforeststudio.com</p>
+                <p>Response time: Within 24 hours</p>
+                <p>Hours: Mon-Fri, 9AM-6PM UTC+3</p>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <a href="../index.html#services">Full-Cycle Development</a>
+                <a href="../index.html#services">Viral Concept Design</a>
+                <a href="../index.html#services">Publisher Negotiations</a>
+                <a href="../index.html#services">LiveOps Support</a>
+            </div>
+            <div class="footer-section">
+                <h4>Monthly Insights</h4>
+                <p>Get expert insights on game dev survival</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Wild Forest Studio. All rights reserved. | 272K+ wishlists generated | Successfully funded projects | 100% completion rate</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            console.log('Newsletter subscription:', email);
+            alert('Thank you for subscribing!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
