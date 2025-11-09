@@ -1488,7 +1488,7 @@
             z-index: 1;
         }
     </style>
-    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LeFVwcsAAAAALXaMscaxEtrbRCVyj_LH9mdhJ2i"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -2041,13 +2041,14 @@ table</div>
                 <p class="availability-text"><i class="fas fa-calendar"></i> Q1 2026 Availability: 1 Full Studio Slot + Multiple Smaller Team Configurations</p>
             </div>
             
-            <form id="form" class="contact-form" action="https://formsubmit.co/greenforestcomp@gmail.com" method="POST">
+            <form id="form" class="contact-form" action="https://formsubmit.co/greenforestcomp@gmail.com" method="POST" onsubmit="onSubmit(event)">
                 <h3 style="text-align: center; margin-bottom: 2rem; color: var(--accent-primary);">Request Free Concept Audit</h3>
                 
                 <!-- FormSubmit Configuration -->
                 <input type="hidden" name="_subject" value="New Partnership Request from Wild Forest Landing">
                 <input type="hidden" name="_captcha" value="true">
                 <input type="hidden" name="_recaptcha" value="6LeFVwcsAAAAAC7AhICTCKbsAWWwTzLsu8M8Tdq5">
+                <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_next" value="thank-you.html">
                 <input type="hidden" name="_autoresponse" value="Thank you for contacting Wild Forest Studio! We have received your partnership request and will respond within 24 hours.">
@@ -2093,7 +2094,6 @@ table</div>
                     <input type="checkbox" id="gdpr" name="gdpr_consent" value="yes" required>
                     <label for="gdpr">I agree to the privacy policy and data processing</label>
                 </div>
-                <div class="g-recaptcha" data-sitekey="6LeFVwcsAAAAALXaMscaxEtrbRCVyj_LH9mdhJ2i"></div>
                 <button type="submit" class="form-submit">Request Free Audit</button>
             </form>
         </div>
@@ -2205,6 +2205,17 @@ table</div>
                 }
             }
         });
+    </script>
+    <script>
+        function onSubmit(event) {
+            event.preventDefault();
+            grecaptcha.ready(function() {
+                grecaptcha.execute('6LeFVwcsAAAAALXaMscaxEtrbRCVyj_LH9mdhJ2i', {action: 'submit'}).then(function(token) {
+                    document.getElementById('g-recaptcha-response').value = token;
+                    document.getElementById('form').submit();
+                });
+            });
+        }
     </script>
 </body>
 </html>
