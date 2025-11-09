@@ -2173,13 +2173,16 @@ table</div>
         // Никакого дополнительного кода не требуется
 
         // Newsletter form
-        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = this.querySelector('input').value;
-            console.log('Newsletter subscription:', email);
-            alert('Thank you for subscribing!');
-            this.reset();
-        });
+        const newsletterForm = document.querySelector('.newsletter-form');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input').value;
+                console.log('Newsletter subscription:', email);
+                alert('Thank you for subscribing!');
+                this.reset();
+            });
+        }
 
         // Event tracking for analytics
         function trackEvent(category, action, label) {
